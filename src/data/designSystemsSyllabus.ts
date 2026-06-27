@@ -1,4 +1,4 @@
-import { ModuleItem } from './syllabus';
+import type { ModuleItem } from './syllabus';
 
 export const DS_SYLLABUS_DATA: ModuleItem[] = [
   // PHASE 1: Fundamentals & Strategy
@@ -246,8 +246,8 @@ Step 2 — Code: Implement a React Provider that swaps CSS variables on the root
         url: "https://www.youtube.com/watch?v=crossplatform"
       }
     ],
-    assignmentPrompt: "Step 1 — Style Dictionary: Configure Style Dictionary to output XML for Android and Swift dictionaries for iOS from your core JSON tokens.
-Step 2 — React Native: Create a basic Button component in React Native that consumes these shared tokens. (Hint: Look at the Style Dictionary iOS/Android formatting docs if you get stuck.)"
+    assignmentPrompt: `Step 1 — Style Dictionary: Configure Style Dictionary to output XML for Android and Swift dictionaries for iOS from your core JSON tokens.
+Step 2 — React Native: Create a basic Button component in React Native that consumes these shared tokens. (Hint: Look at the Style Dictionary iOS/Android formatting docs if you get stuck.)`
   },
   {
     id: "ds-u14",
@@ -264,8 +264,8 @@ Step 2 — React Native: Create a basic Button component in React Native that co
         url: "https://www.w3.org/International/techniques/authoring-html"
       }
     ],
-    assignmentPrompt: "Step 1 — RTL Support: Update your layout and spacing CSS to use logical properties (e.g., margin-inline-start instead of margin-left).
-Step 2 — Font Fallbacks: Define a comprehensive font stack that elegantly degrades for Hindi, Tamil, and other regional scripts. (Hint: Review CSS Logical Properties on MDN if you are blocked.)"
+    assignmentPrompt: `Step 1 — RTL Support: Update your layout and spacing CSS to use logical properties (e.g., margin-inline-start instead of margin-left).
+Step 2 — Font Fallbacks: Define a comprehensive font stack that elegantly degrades for Hindi, Tamil, and other regional scripts. (Hint: Review CSS Logical Properties on MDN if you are blocked.)`
   },
   {
     id: "ds-u15",
@@ -282,8 +282,8 @@ Step 2 — Font Fallbacks: Define a comprehensive font stack that elegantly degr
         url: "https://material.io/design/motion/understanding-motion.html"
       }
     ],
-    assignmentPrompt: "Step 1 — Motion Tokens: Define a set of duration (fast, base, slow) and easing (expressive, standard) tokens.
-Step 2 — Implementation: Build a React wrapper component (using Framer Motion or pure CSS) that applies these tokens to standard entrance/exit animations. (Hint: Review the Framer Motion layout animations documentation if you get stuck.)"
+    assignmentPrompt: `Step 1 — Motion Tokens: Define a set of duration (fast, base, slow) and easing (expressive, standard) tokens.
+Step 2 — Implementation: Build a React wrapper component (using Framer Motion or pure CSS) that applies these tokens to standard entrance/exit animations. (Hint: Review the Framer Motion layout animations documentation if you get stuck.)`
   },
   {
     id: "ds-u16",
@@ -300,8 +300,8 @@ Step 2 — Implementation: Build a React wrapper component (using Framer Motion 
         url: "https://web.dev/reduce-javascript-payloads-with-tree-shaking/"
       }
     ],
-    assignmentPrompt: "Step 1 — Build Config: Configure Rollup or Webpack in your design system to preserve ES modules, enabling tree-shaking for consumers.
-Step 2 — Bundle Analysis: Run a bundle analyzer on a sample consuming app to verify that importing only the 'Button' does not include the code for 'DatePicker'. (Hint: Review Rollup's preserveModules flag if you are blocked.)"
+    assignmentPrompt: `Step 1 — Build Config: Configure Rollup or Webpack in your design system to preserve ES modules, enabling tree-shaking for consumers.
+Step 2 — Bundle Analysis: Run a bundle analyzer on a sample consuming app to verify that importing only the 'Button' does not include the code for 'DatePicker'. (Hint: Review Rollup's preserveModules flag if you are blocked.)`
   },
   {
     id: "ds-u17",
@@ -318,8 +318,8 @@ Step 2 — Bundle Analysis: Run a bundle analyzer on a sample consuming app to v
         url: "https://figma.com/blog/measuring-design-system-adoption/"
       }
     ],
-    assignmentPrompt: "Step 1 — Tracking: Wrap your Button component with an analytics hook that fires an event (in dev mode) detailing which variant is being used.
-Step 2 — Dashboards: Design a simple schema (JSON) for aggregating this data to show which components are most heavily utilized across all company repos. (Hint: Review React Context for injecting analytics providers if you get stuck.)"
+    assignmentPrompt: `Step 1 — Tracking: Wrap your Button component with an analytics hook that fires an event (in dev mode) detailing which variant is being used.
+Step 2 — Dashboards: Design a simple schema (JSON) for aggregating this data to show which components are most heavily utilized across all company repos. (Hint: Review React Context for injecting analytics providers if you get stuck.)`
   }
 
 ];
