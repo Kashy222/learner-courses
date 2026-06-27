@@ -261,17 +261,17 @@ export const LearningPlatform: React.FC = () => {
         </div>
         
         {/* Right Container: Actions (Desktop: Side-by-Side, Mobile: Side-by-Side on new row) */}
-        <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-1/4">
+        <div className="grid grid-cols-2 sm:flex sm:items-center sm:justify-end gap-3 w-full sm:w-auto">
           {/* Start Learning Button */}
           <button 
             onClick={handleResume}
-            className="flex-1 sm:flex-none bg-anthropic-accent hover:bg-anthropic-accentHover text-white px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium transition-colors shadow-sm shrink-0 text-center"
+            className="w-full sm:w-auto bg-anthropic-accent hover:bg-anthropic-accentHover text-white px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium transition-colors shadow-sm text-center"
           >
             {completedCount === 0 ? "Start Learning" : "Resume Learning"}
           </button>
           
           {/* Cloud Sync Popover Wrapper */}
-          <div className="relative flex flex-col items-end sm:items-end gap-1 flex-1 sm:flex-none">
+          <div className="relative w-full sm:w-auto flex flex-col items-end sm:items-end gap-1">
             <button
               onClick={() => setIsSyncPopoverOpen(!isSyncPopoverOpen)}
               className={`w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 bg-white border rounded-lg text-sm font-medium transition-colors shadow-sm ${isSyncPopoverOpen ? 'border-anthropic-text text-anthropic-text' : 'border-anthropic-border hover:bg-gray-50'}`}
