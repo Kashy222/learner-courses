@@ -228,8 +228,8 @@ export const DS_SYLLABUS_DATA: ModuleItem[] = [
         url: "https://medium.com/eightshapes-llc/theming-in-design-systems-d2890539f99"
       }
     ],
-    assignmentPrompt: "Step 1 — Architecture: Structure a JSON token file to support 'brand-a', 'brand-b', and 'dark-mode' utilizing a multi-layered token approach (Core -> Semantic -> Component).
-Step 2 — Code: Implement a React Provider that swaps CSS variables on the root HTML element when a theme changes. (Hint: Review CSS Custom Properties and React Context if you are blocked.)"
+    assignmentPrompt: `Step 1 — Architecture: Structure a JSON token file to support 'brand-a', 'brand-b', and 'dark-mode' utilizing a multi-layered token approach (Core -> Semantic -> Component).
+Step 2 — Code: Implement a React Provider that swaps CSS variables on the root HTML element when a theme changes. (Hint: Review CSS Custom Properties and React Context if you are blocked.)`
   },
   {
     id: "ds-u13",
