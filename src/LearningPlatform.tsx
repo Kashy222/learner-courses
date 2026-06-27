@@ -287,7 +287,7 @@ export const LearningPlatform: React.FC = () => {
             </button>
 
             {lastSyncedAt && (
-              <span className="text-[9px] text-anthropic-muted font-medium pr-1 absolute -bottom-4 right-0 whitespace-nowrap">
+              <span className="text-[9px] text-anthropic-muted font-medium absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap">
                 Last synced: {new Date(lastSyncedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </span>
             )}
