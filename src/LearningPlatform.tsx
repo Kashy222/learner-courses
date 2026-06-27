@@ -21,6 +21,7 @@ export const LearningPlatform: React.FC = () => {
   const [otpVals, setOtpVals] = useState<string[]>(Array(OTP_LENGTH).fill(''));
   const [syncStatus, setSyncStatus] = useState<'idle' | 'saving' | 'loading' | 'success' | 'error'>('idle');
   const [syncMessage, setSyncMessage] = useState('');
+  const [lastSyncedAt, setLastSyncedAt] = useState<number | null>(null);
   
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -35,6 +36,7 @@ export const LearningPlatform: React.FC = () => {
         if (parsed.completedModules) setCompletedModules(parsed.completedModules);
         if (parsed.sandboxInputs) setSandboxInputs(parsed.sandboxInputs);
         if (parsed.activeModuleId) setActiveModuleId(parsed.activeModuleId);
+        if (parsed.lastSyncedAt) setLastSyncedAt(parsed.lastSyncedAt);
       } catch (e) {
         console.error("Failed to parse local storage", e);
       }
@@ -123,7 +125,8 @@ export const LearningPlatform: React.FC = () => {
       const snapshot = {
         completedModules: mergedCompleted,
         sandboxInputs: mergedSandbox,
-        activeModuleId
+        activeModuleId,
+        lastSyncedAt: Date.now()
       };
 
       // 3. Push merged state back to cloud
@@ -137,6 +140,7 @@ export const LearningPlatform: React.FC = () => {
         // 4. Apply merged state locally
         setCompletedModules(mergedCompleted);
         setSandboxInputs(mergedSandbox);
+        setLastSyncedAt(snapshot.lastSyncedAt);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
         localStorage.setItem('SYNC_KEY', key);
 
@@ -157,14 +161,14 @@ export const LearningPlatform: React.FC = () => {
 
   const handleSelectModule = (id: string) => {
     setActiveModuleId(id);
-    const snapshot = { completedModules, sandboxInputs, activeModuleId: id };
+    const snapshot = { completedModules, sandboxInputs, activeModuleId: id, lastSyncedAt };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
   };
 
   const handleToggleComplete = (id: string) => {
     setCompletedModules(prev => {
       const next = { ...prev, [id]: !prev[id] };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ completedModules: next, sandboxInputs, activeModuleId }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ completedModules: next, sandboxInputs, activeModuleId, lastSyncedAt }));
       return next;
     });
   };
@@ -172,7 +176,7 @@ export const LearningPlatform: React.FC = () => {
   const handleSandboxChange = (id: string, text: string) => {
     setSandboxInputs(prev => {
       const next = { ...prev, [id]: text };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ completedModules, sandboxInputs: next, activeModuleId }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ completedModules, sandboxInputs: next, activeModuleId, lastSyncedAt }));
       return next;
     });
   };
@@ -249,7 +253,7 @@ export const LearningPlatform: React.FC = () => {
           </button>
           
           {/* Cloud Sync Popover Wrapper */}
-          <div className="relative">
+          <div className="relative flex flex-col items-end gap-1">
             <button
               onClick={() => setIsSyncPopoverOpen(!isSyncPopoverOpen)}
               className={`w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-white border rounded-lg text-sm font-medium transition-colors shadow-sm ${isSyncPopoverOpen ? 'border-anthropic-text text-anthropic-text' : 'border-anthropic-border hover:bg-gray-50'}`}
@@ -263,6 +267,12 @@ export const LearningPlatform: React.FC = () => {
               )}
               <span className="hidden xl:inline">{syncStatus === 'success' ? 'Synced' : 'Cloud Sync'}</span>
             </button>
+
+            {lastSyncedAt && (
+              <span className="text-[9px] text-anthropic-muted font-medium pr-1 absolute -bottom-4 right-0 whitespace-nowrap">
+                Last synced: {new Date(lastSyncedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+              </span>
+            )}
 
             {/* Popover Dropdown */}
             {isSyncPopoverOpen && (
