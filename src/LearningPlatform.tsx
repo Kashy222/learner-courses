@@ -78,7 +78,7 @@ export const LearningPlatform: React.FC = () => {
     }
   };
 
-  const handleSaveToCloud = async () => {
+  const handleSmartSync = async () => {
     const key = getSyncKey();
     if (key.length !== OTP_LENGTH) {
       setSyncStatus('error');
@@ -87,25 +87,61 @@ export const LearningPlatform: React.FC = () => {
     }
 
     setSyncStatus('saving');
-    
-    const snapshot = {
-      completedModules,
-      sandboxInputs,
-      activeModuleId
-    };
-    
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
-    localStorage.setItem('SYNC_KEY', key);
 
     try {
-      const res = await fetch('/api/save', {
+      // 1. Try to pull cloud data first
+      let cloudData = null;
+      try {
+        const loadRes = await fetch(`/api/load?syncKey=${key}`);
+        if (loadRes.ok) {
+          const parsed = await loadRes.json();
+          cloudData = parsed.data;
+        }
+      } catch (e) {
+        // It's okay if it fails (e.g. new key)
+      }
+
+      // 2. Merge local and cloud progress (Union of completed modules)
+      const mergedCompleted = { ...completedModules };
+      const mergedSandbox = { ...sandboxInputs };
+
+      if (cloudData) {
+        if (cloudData.completedModules) {
+          Object.keys(cloudData.completedModules).forEach(k => {
+            if (cloudData.completedModules[k]) mergedCompleted[k] = true;
+          });
+        }
+        if (cloudData.sandboxInputs) {
+          Object.keys(cloudData.sandboxInputs).forEach(k => {
+            if (!mergedSandbox[k] || cloudData.sandboxInputs[k].length > mergedSandbox[k].length) {
+              mergedSandbox[k] = cloudData.sandboxInputs[k];
+            }
+          });
+        }
+      }
+
+      const snapshot = {
+        completedModules: mergedCompleted,
+        sandboxInputs: mergedSandbox,
+        activeModuleId
+      };
+
+      // 3. Push merged state back to cloud
+      const saveRes = await fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ syncKey: key, data: snapshot })
       });
-      if (res.ok) {
+
+      if (saveRes.ok) {
+        // 4. Apply merged state locally
+        setCompletedModules(mergedCompleted);
+        setSandboxInputs(mergedSandbox);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
+        localStorage.setItem('SYNC_KEY', key);
+
         setSyncStatus('success');
-        setSyncMessage('Saved!');
+        setSyncMessage('Synced!');
         setTimeout(() => {
             setIsSyncPopoverOpen(false);
             setSyncStatus('idle');
@@ -115,46 +151,7 @@ export const LearningPlatform: React.FC = () => {
       }
     } catch (e) {
       setSyncStatus('error');
-      setSyncMessage('Save failed');
-    }
-  };
-
-  const handleLoadFromCloud = async () => {
-    const key = getSyncKey();
-    if (key.length !== OTP_LENGTH) {
-      setSyncStatus('error');
-      setSyncMessage('Enter full 6-digit key');
-      return;
-    }
-
-    setSyncStatus('loading');
-
-    try {
-      const res = await fetch(`/api/load?syncKey=${key}`);
-      if (res.ok) {
-        const { data } = await res.json();
-        if (data) {
-          if (data.completedModules) setCompletedModules(data.completedModules);
-          if (data.sandboxInputs) setSandboxInputs(data.sandboxInputs);
-          if (data.activeModuleId) setActiveModuleId(data.activeModuleId);
-          
-          localStorage.setItem('SYNC_KEY', key);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-          
-          setSyncStatus('success');
-          setSyncMessage('Loaded!');
-          setTimeout(() => {
-              setIsSyncPopoverOpen(false);
-              setSyncStatus('idle');
-          }, 1500);
-        }
-      } else {
-        setSyncStatus('error');
-        setSyncMessage('Key not found');
-      }
-    } catch (e) {
-      setSyncStatus('error');
-      setSyncMessage('Load failed');
+      setSyncMessage('Sync failed');
     }
   };
 
@@ -304,18 +301,12 @@ export const LearningPlatform: React.FC = () => {
 
                   <div className="flex gap-2 mt-1">
                     <button 
-                      onClick={handleLoadFromCloud}
-                      disabled={syncStatus === 'loading' || syncStatus === 'saving'}
-                      className="flex-1 flex justify-center items-center gap-1.5 py-2 px-3 bg-anthropic-sidebar/50 border border-anthropic-border hover:bg-anthropic-sidebar rounded-lg text-xs font-medium text-anthropic-text transition-colors disabled:opacity-50"
+                      onClick={handleSmartSync}
+                      disabled={syncStatus === 'loading' || syncStatus === 'saving' || getSyncKey().length !== OTP_LENGTH}
+                      className="flex-1 flex justify-center items-center gap-1.5 py-2.5 px-3 bg-anthropic-text hover:bg-black text-white rounded-lg text-sm font-bold transition-colors disabled:opacity-50"
                     >
-                      <DownloadCloud className="w-3.5 h-3.5 text-anthropic-muted" /> Pull
-                    </button>
-                    <button 
-                      onClick={handleSaveToCloud}
-                      disabled={syncStatus === 'loading' || syncStatus === 'saving'}
-                      className="flex-1 flex justify-center items-center gap-1.5 py-2 px-3 bg-anthropic-text hover:bg-black text-white rounded-lg text-xs font-medium transition-colors disabled:opacity-50"
-                    >
-                      <UploadCloud className="w-3.5 h-3.5" /> Push
+                      {syncStatus === 'saving' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Cloud className="w-4 h-4" />} 
+                      Sync Progress
                     </button>
                   </div>
                 </div>
