@@ -207,9 +207,9 @@ export const LearningPlatform: React.FC = () => {
     <div className="min-h-screen bg-anthropic-bg text-anthropic-text font-sans relative">
       <div className="bg-noise" />
       {/* Top Sticky Navigation Component Row */}
-      <nav className="sticky top-0 z-50 bg-anthropic-bg/80 backdrop-blur-md border-b border-anthropic-border px-4 sm:px-6 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0">
+      <nav className="sticky top-0 z-50 bg-anthropic-bg/80 backdrop-blur-md border-b border-anthropic-border px-4 sm:px-6 py-4 flex flex-wrap sm:flex-nowrap items-center justify-between gap-y-4">
         {/* Left Container */}
-        <div className="flex flex-col gap-1 w-full sm:w-1/4">
+        <div className="flex flex-col gap-1 w-1/2 sm:w-1/4 order-1">
           <span className="text-[10px] font-bold tracking-widest text-anthropic-muted uppercase">
             Course Progress
           </span>
@@ -228,7 +228,7 @@ export const LearningPlatform: React.FC = () => {
         </div>
 
         {/* Center: Compact Progress Tracker */}
-        <div className="flex-1 flex flex-col justify-center items-center w-full sm:w-1/2 px-0 sm:px-8 gap-1.5">
+        <div className="flex-1 flex flex-col justify-center items-center w-full sm:w-1/2 px-0 sm:px-8 gap-1.5 order-3 sm:order-2 mt-2 sm:mt-0">
           <div className="text-[10px] font-bold tracking-widest text-anthropic-muted uppercase text-left w-full max-w-md mx-auto flex items-center gap-2">
             <span>
               Phase {activeData.find(m => m.id === activeModuleId)?.phase.split(':')[0]} • Unit {activeData.find(m => m.id === activeModuleId)?.unit.replace('U', '')}
@@ -249,10 +249,11 @@ export const LearningPlatform: React.FC = () => {
         </div>
         
         {/* Right Container */}
-        <div className="flex items-center justify-end gap-3 w-full sm:w-1/4">
+        <div className="flex items-center justify-end gap-3 w-1/2 sm:w-1/4 order-2 sm:order-3">
+          {/* Desktop Start Learning Button */}
           <button 
             onClick={handleResume}
-            className="w-full sm:w-auto bg-anthropic-accent hover:bg-anthropic-accentHover text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm shrink-0"
+            className="hidden sm:block bg-anthropic-accent hover:bg-anthropic-accentHover text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm shrink-0"
           >
             {completedCount === 0 ? "Start Learning" : "Resume Learning"}
           </button>
@@ -329,6 +330,16 @@ export const LearningPlatform: React.FC = () => {
             )}
           </div>
         </div>
+
+        {/* Mobile Start Learning Button */}
+        <div className="w-full order-4 sm:hidden mt-2">
+          <button 
+            onClick={handleResume}
+            className="w-full bg-anthropic-accent hover:bg-anthropic-accentHover text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors shadow-sm"
+          >
+            {completedCount === 0 ? "Start Learning" : "Resume Learning"}
+          </button>
+        </div>
       </nav>
 
       {/* Primary Split Grid Workspace */}
@@ -349,7 +360,7 @@ export const LearningPlatform: React.FC = () => {
           </div>
 
           {/* Right Column (Fixed Layout Area) */}
-          <div className="hidden lg:block">
+          <div className="block mt-6 lg:mt-0">
             <Sidebar 
               activeId={activeModuleId}
               completedModules={completedModules}
