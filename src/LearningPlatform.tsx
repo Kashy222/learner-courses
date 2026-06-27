@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Cloud, CloudLightning, Loader2, ChevronDown, Key, DownloadCloud } from 'lucide-react';
+import { Cloud, CloudLightning, Loader2, ChevronDown, Key, DownloadCloud, UploadCloud, X } from 'lucide-react';
 import { SYLLABUS_DATA } from './data/syllabus';
 import { DS_SYLLABUS_DATA } from './data/designSystemsSyllabus';
 
@@ -12,13 +12,21 @@ export const LearningPlatform: React.FC = () => {
   const [activeModuleId, setActiveModuleId] = useState<string>("u1");
   const [completedModules, setCompletedModules] = useState<Record<string, boolean>>({});
   const [sandboxInputs, setSandboxInputs] = useState<Record<string, string>>({});
-  const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success'>('idle');
+  
   const [currentCourse, setCurrentCourse] = useState<'zero-to-motion' | 'design-systems'>('zero-to-motion');
+  const [syncKey, setSyncKey] = useState<string>('');
+  
+  // Sync Modal States
+  const [isSyncModalOpen, setIsSyncModalOpen] = useState(false);
+  const [modalKeyInput, setModalKeyInput] = useState('');
+  const [modalStatus, setModalStatus] = useState<'idle' | 'saving' | 'loading' | 'success' | 'error'>('idle');
+  const [modalMessage, setModalMessage] = useState('');
 
   const activeData = currentCourse === 'zero-to-motion' ? SYLLABUS_DATA : DS_SYLLABUS_DATA;
 
   // Load from local storage on mount
   useEffect(() => {
+    // 1. Try to load local progress
     const savedData = localStorage.getItem(STORAGE_KEY);
     if (savedData) {
       try {
@@ -30,55 +38,126 @@ export const LearningPlatform: React.FC = () => {
         console.error("Failed to parse local storage", e);
       }
     }
+
+    // 2. Load cached sync key if it exists
+    const cachedKey = localStorage.getItem('SYNC_KEY');
+    if (cachedKey) {
+      setSyncKey(cachedKey);
+      setModalKeyInput(cachedKey);
+    }
   }, []);
 
-    const handleSaveProgress = async () => {
-    setSyncStatus('syncing');
+  const handleOpenSyncModal = () => {
+    setModalKeyInput(syncKey);
+    setModalStatus('idle');
+    setModalMessage('');
+    setIsSyncModalOpen(true);
+  };
+
+  const handleSaveToCloud = async () => {
+    if (!modalKeyInput.trim()) {
+      setModalStatus('error');
+      setModalMessage('Please enter a unique key.');
+      return;
+    }
+
+    setModalStatus('saving');
     
     const snapshot = {
       completedModules,
       sandboxInputs,
       activeModuleId
     };
+    
+    // Always save locally too
     localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
+    localStorage.setItem('SYNC_KEY', modalKeyInput.trim());
+    setSyncKey(modalKeyInput.trim());
 
     try {
       const res = await fetch('/api/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ syncKey, data: snapshot })
+        body: JSON.stringify({ syncKey: modalKeyInput.trim(), data: snapshot })
       });
       if (res.ok) {
-        setSyncStatus('success');
+        setModalStatus('success');
+        setModalMessage('Progress saved to cloud successfully!');
+        setTimeout(() => setIsSyncModalOpen(false), 2000);
       } else {
         throw new Error('Failed to save to KV');
       }
     } catch (e) {
-      console.warn("KV Save failed (falling back to local storage only):", e);
-      setSyncStatus('success'); // Still show success for local save
+      console.warn("KV Save failed:", e);
+      setModalStatus('error');
+      setModalMessage('Failed to connect to cloud server.');
+    }
+  };
+
+  const handleLoadFromCloud = async () => {
+    if (!modalKeyInput.trim()) {
+      setModalStatus('error');
+      setModalMessage('Please enter a unique key.');
+      return;
     }
 
-    setTimeout(() => {
-      setSyncStatus('idle');
-    }, 2500);
+    setModalStatus('loading');
+
+    try {
+      const res = await fetch(`/api/load?syncKey=${modalKeyInput.trim()}`);
+      if (res.ok) {
+        const { data } = await res.json();
+        if (data) {
+          if (data.completedModules) setCompletedModules(data.completedModules);
+          if (data.sandboxInputs) setSandboxInputs(data.sandboxInputs);
+          if (data.activeModuleId) setActiveModuleId(data.activeModuleId);
+          
+          localStorage.setItem('SYNC_KEY', modalKeyInput.trim());
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          setSyncKey(modalKeyInput.trim());
+          
+          setModalStatus('success');
+          setModalMessage('Progress loaded successfully!');
+          setTimeout(() => setIsSyncModalOpen(false), 2000);
+        }
+      } else {
+        setModalStatus('error');
+        setModalMessage('Key not found or no progress saved yet.');
+      }
+    } catch (e) {
+      console.error("Auto-sync failed", e);
+      setModalStatus('error');
+      setModalMessage('Failed to connect to cloud server.');
+    }
   };
 
   const handleSelectModule = (id: string) => {
     setActiveModuleId(id);
+    // Auto save locally when module changes
+    const snapshot = {
+      completedModules,
+      sandboxInputs,
+      activeModuleId: id
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
   };
 
   const handleToggleComplete = (id: string) => {
-    setCompletedModules(prev => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
+    setCompletedModules(prev => {
+      const next = { ...prev, [id]: !prev[id] };
+      // Auto save locally
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ completedModules: next, sandboxInputs, activeModuleId }));
+      return next;
+    });
   };
 
   const handleSandboxChange = (id: string, text: string) => {
-    setSandboxInputs(prev => ({
-      ...prev,
-      [id]: text
-    }));
+    setSandboxInputs(prev => {
+      const next = { ...prev, [id]: text };
+      // Auto save locally
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ completedModules, sandboxInputs: next, activeModuleId }));
+      return next;
+    });
   };
 
   const handleResume = () => {
@@ -152,28 +231,11 @@ export const LearningPlatform: React.FC = () => {
             {completedCount === 0 ? "Start Learning" : "Resume Learning"}
           </button>
           <button
-            onClick={handleSaveProgress}
-            disabled={syncStatus !== 'idle'}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-white border border-anthropic-border rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed"
+            onClick={handleOpenSyncModal}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-white border border-anthropic-border rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors shadow-sm"
           >
-            {syncStatus === 'idle' && (
-              <>
-                <Cloud className="w-4 h-4 text-anthropic-muted" />
-                <span className="hidden xl:inline">Save</span>
-              </>
-            )}
-            {syncStatus === 'syncing' && (
-              <>
-                <Loader2 className="w-4 h-4 animate-spin text-anthropic-accent" />
-                <span className="hidden xl:inline">Syncing...</span>
-              </>
-            )}
-            {syncStatus === 'success' && (
-              <>
-                <CloudLightning className="w-4 h-4 text-[#248259]" />
-                <span className="hidden xl:inline">Saved</span>
-              </>
-            )}
+            <Cloud className="w-4 h-4 text-anthropic-muted" />
+            <span className="hidden xl:inline">Cloud Sync</span>
           </button>
         </div>
       </nav>
@@ -207,6 +269,72 @@ export const LearningPlatform: React.FC = () => {
           
         </div>
       </main>
+
+      {/* Sync Modal Overlay */}
+      {isSyncModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-anthropic-card w-full max-w-md rounded-2xl shadow-2xl border border-anthropic-border overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex justify-between items-center p-5 border-b border-anthropic-border">
+              <h3 className="font-bold text-lg flex items-center gap-2">
+                <Cloud className="w-5 h-5 text-anthropic-accent" />
+                Cloud Sync
+              </h3>
+              <button onClick={() => setIsSyncModalOpen(false)} className="text-anthropic-muted hover:text-anthropic-text transition-colors">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            
+            <div className="p-6 space-y-4">
+              <p className="text-sm text-anthropic-muted">
+                Enter your unique Sync Key. You can use this key to push your progress to the cloud, or load progress onto a new device.
+              </p>
+              
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-anthropic-muted">Sync Key</label>
+                <div className="relative">
+                  <Key className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-anthropic-muted" />
+                  <input 
+                    type="text" 
+                    placeholder="e.g. MY-SECRET-KEY-123"
+                    value={modalKeyInput}
+                    onChange={(e) => setModalKeyInput(e.target.value)}
+                    className="w-full bg-anthropic-bg border border-anthropic-border rounded-lg pl-9 pr-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-anthropic-accent/20 transition-all"
+                  />
+                </div>
+              </div>
+
+              {modalMessage && (
+                <div className={`p-3 rounded-lg text-sm flex items-center gap-2 ${
+                  modalStatus === 'error' ? 'bg-red-500/10 text-red-500 border border-red-500/20' : 
+                  modalStatus === 'success' ? 'bg-green-500/10 text-green-600 border border-green-500/20' : ''
+                }`}>
+                  {modalStatus === 'success' && <CloudLightning className="w-4 h-4" />}
+                  {modalMessage}
+                </div>
+              )}
+            </div>
+            
+            <div className="p-4 bg-anthropic-sidebar/50 border-t border-anthropic-border flex justify-end gap-3">
+              <button 
+                onClick={handleLoadFromCloud}
+                disabled={modalStatus === 'loading' || modalStatus === 'saving' || !modalKeyInput.trim()}
+                className="flex items-center gap-2 px-4 py-2 bg-white border border-anthropic-border rounded-lg text-sm font-medium hover:bg-gray-50 transition-colors disabled:opacity-50"
+              >
+                {modalStatus === 'loading' ? <Loader2 className="w-4 h-4 animate-spin" /> : <DownloadCloud className="w-4 h-4 text-anthropic-muted" />}
+                Load from Cloud
+              </button>
+              <button 
+                onClick={handleSaveToCloud}
+                disabled={modalStatus === 'loading' || modalStatus === 'saving' || !modalKeyInput.trim()}
+                className="flex items-center gap-2 px-4 py-2 bg-anthropic-text text-white rounded-lg text-sm font-medium hover:bg-black transition-colors disabled:opacity-50"
+              >
+                {modalStatus === 'saving' ? <Loader2 className="w-4 h-4 animate-spin" /> : <UploadCloud className="w-4 h-4" />}
+                Save to Cloud
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
