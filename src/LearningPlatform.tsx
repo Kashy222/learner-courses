@@ -294,9 +294,9 @@ export const LearningPlatform: React.FC = () => {
 
             {/* Popover Dropdown */}
             {isSyncPopoverOpen && (
-              <div className="absolute right-0 top-full mt-4 sm:mt-3 w-[260px] sm:w-72 bg-anthropic-card rounded-xl shadow-2xl border border-anthropic-border p-4 animate-in fade-in slide-in-from-top-2 z-50">
+              <div className="absolute right-0 top-full mt-4 sm:mt-3 w-[calc(100vw-32px)] sm:w-72 bg-anthropic-card rounded-xl shadow-2xl border border-anthropic-border p-4 animate-in fade-in slide-in-from-top-2 z-50">
                 {/* CSS Triangle */}
-                <div className="absolute -top-2 right-12 w-4 h-4 bg-anthropic-card border-t border-l border-anthropic-border transform rotate-45"></div>
+                <div className="absolute -top-2 right-[20%] sm:right-12 w-4 h-4 bg-anthropic-card border-t border-l border-anthropic-border transform rotate-45"></div>
                 
                 <div className="relative z-10 flex flex-col gap-3">
                   <div className="flex justify-between items-center">
@@ -316,7 +316,7 @@ export const LearningPlatform: React.FC = () => {
                         value={val}
                         onChange={(e) => handleOtpChange(i, e.target.value)}
                         onKeyDown={(e) => handleOtpKeyDown(i, e)}
-                        className="w-8 h-9 sm:w-9 sm:h-10 text-center font-mono font-bold text-lg bg-anthropic-bg border border-anthropic-border rounded-md focus:border-anthropic-accent focus:ring-1 focus:ring-anthropic-accent outline-none uppercase transition-all"
+                        className="w-10 h-12 sm:w-9 sm:h-10 text-center font-mono font-bold text-xl sm:text-lg bg-anthropic-bg border border-anthropic-border rounded-md focus:border-anthropic-accent focus:ring-1 focus:ring-anthropic-accent outline-none uppercase transition-all"
                       />
                     ))}
                   </div>
