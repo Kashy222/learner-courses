@@ -35,7 +35,12 @@ export const LearningPlatform: React.FC = () => {
         const parsed = JSON.parse(savedData);
         if (parsed.completedModules) setCompletedModules(parsed.completedModules);
         if (parsed.sandboxInputs) setSandboxInputs(parsed.sandboxInputs);
-        if (parsed.activeModuleId) setActiveModuleId(parsed.activeModuleId);
+        if (parsed.activeModuleId) {
+          setActiveModuleId(parsed.activeModuleId);
+          if (DS_SYLLABUS_DATA.some(m => m.id === parsed.activeModuleId)) {
+            setCurrentCourse('design-systems');
+          }
+        }
         if (parsed.lastSyncedAt) setLastSyncedAt(parsed.lastSyncedAt);
       } catch (e) {
         console.error("Failed to parse local storage", e);
