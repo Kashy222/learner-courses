@@ -1,0 +1,732 @@
+[
+  {
+    "url": "https://linear.app/",
+    "title": "Linear – The system for product development",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "colors": {
+      "pageBackground": "rgb(8, 9, 10)",
+      "backgroundColors": [
+        "rgba(255, 255, 255, 0.05)",
+        "rgba(255, 255, 255, 0.02)",
+        "rgba(0, 255, 5, 0.1)",
+        "rgba(255, 255, 255, 0.08)",
+        "rgb(8, 9, 10)",
+        "rgba(255, 255, 255, 0.03)",
+        "rgb(0, 0, 0)",
+        "rgb(15, 16, 17)"
+      ],
+      "textColors": [
+        "rgb(98, 102, 109)",
+        "rgb(138, 143, 152)",
+        "rgb(208, 214, 224)",
+        "rgb(226, 228, 231)",
+        "rgb(247, 156, 224)",
+        "rgb(247, 248, 248)"
+      ],
+      "accentCandidates": [
+        "rgb(98, 102, 109)",
+        "rgb(138, 143, 152)",
+        "rgb(255, 255, 255)",
+        "rgb(247, 248, 248)",
+        "rgba(255, 255, 255, 0.05)",
+        "rgb(208, 214, 224)"
+      ]
+    },
+    "typography": {
+      "uniqueFamilies": [
+        "Inter Variable",
+        "Berkeley Mono"
+      ],
+      "headings": {
+        "h1": {
+          "size": "64px",
+          "weight": "510",
+          "lineHeight": "64px",
+          "letterSpacing": "-1.408px",
+          "family": "Inter Variable"
+        },
+        "h3": {
+          "size": "20px",
+          "weight": "590",
+          "lineHeight": "26.6px",
+          "letterSpacing": "-0.24px",
+          "family": "Inter Variable"
+        },
+        "h4": {
+          "size": "16px",
+          "weight": "590",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "family": "Inter Variable"
+        },
+        "h2": {
+          "size": "48px",
+          "weight": "510",
+          "lineHeight": "48px",
+          "letterSpacing": "-1.056px",
+          "family": "Inter Variable"
+        }
+      },
+      "body": {
+        "size": "15px",
+        "weight": "400",
+        "lineHeight": "24px",
+        "family": "Inter Variable",
+        "maxWidth": "none"
+      }
+    },
+    "layout": {
+      "bodyPadding": "0px",
+      "containerMaxWidth": "none",
+      "containerPadding": "72px 0px 0px",
+      "containerWidth": "1440px"
+    },
+    "effects": {
+      "radii": [
+        "2px",
+        "6px",
+        "50%",
+        "4px",
+        "9999px",
+        "12px",
+        "8px",
+        "12px 12px 0px 0px"
+      ],
+      "shadows": [
+        "rgba(0, 0, 0, 0.03) 0px 1.2px 0px 0px",
+        "rgba(0, 0, 0, 0.4) 0px 2px 4px 0px",
+        "rgba(0, 0, 0, 0.2) 0px 0px 12px 0px inset",
+        "rgb(35, 37, 42) 0px 0px 0px 1px inset",
+        "rgba(0, 0, 0, 0.2) 0px 0px 0px 1px",
+        "rgba(0, 0, 0, 0) 0px 8px 2px 0px, rgba(0, 0, 0, 0.01) 0px 5px 2px 0px, rgba(0, 0, 0, 0.04) 0px 3px 2px 0px, rgba(0, 0, 0, 0.07) 0px 1px 1px 0px, rgba(0, 0, 0, 0.08) 0px 0px 1px 0px"
+      ],
+      "transitions": [
+        "all",
+        "border-color 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "color 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "border 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "filter 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "background 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+      ]
+    },
+    "cards": [
+      {
+        "selector": "div.w9ZFkq_note",
+        "width": "646px",
+        "height": "146px",
+        "ratio": "4.44:1",
+        "radius": "6px",
+        "shadow": "rgba(0, 0, 0, 0.2) 0px 0px 0px 1px"
+      },
+      {
+        "selector": "div.w9ZFkq_chatBox",
+        "width": "400px",
+        "height": "488px",
+        "ratio": "0.82:1",
+        "radius": "8px",
+        "shadow": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/c7b144b7-4ef0-4991-9bcb-617c6a37d200/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 1062,
+        "naturalHeight": 493,
+        "ratio": "2.15:1",
+        "renderedWidth": "1416px",
+        "role": "hero"
+      },
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/c7fa8f5f-d439-4329-6a65-de549b51e300/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 6304,
+        "naturalHeight": 3520,
+        "ratio": "1.79:1",
+        "renderedWidth": "1440px",
+        "role": "hero"
+      },
+      {
+        "src": "https://webassets.linear.app/images/ornj730p/production/f79251b06e9edeeacbf2875384defe629e000b3c-352x352.png?w=72&q=95&auto=format&dpr=2",
+        "naturalWidth": 144,
+        "naturalHeight": 144,
+        "ratio": "1.00:1",
+        "renderedWidth": "14px",
+        "role": "thumbnail"
+      },
+      {
+        "src": "https://webassets.linear.app/images/ornj730p/production/f79251b06e9edeeacbf2875384defe629e000b3c-352x352.png?w=72&q=95&auto=format&dpr=2",
+        "naturalWidth": 144,
+        "naturalHeight": 144,
+        "ratio": "1.00:1",
+        "renderedWidth": "14px",
+        "role": "thumbnail"
+      },
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/c8aeedda-7726-4a4f-226a-f573f85d8d00/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 512,
+        "naturalHeight": 512,
+        "ratio": "1.00:1",
+        "renderedWidth": "36px",
+        "role": "thumbnail"
+      },
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/580cd9c0-2770-4fe4-1ad2-95c76fc6f000/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 192,
+        "naturalHeight": 192,
+        "ratio": "1.00:1",
+        "renderedWidth": "36px",
+        "role": "thumbnail"
+      },
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/c8aeedda-7726-4a4f-226a-f573f85d8d00/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 512,
+        "naturalHeight": 512,
+        "ratio": "1.00:1",
+        "renderedWidth": "36px",
+        "role": "thumbnail"
+      },
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/22210a73-581d-42db-d42a-bf2907860300/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 144,
+        "naturalHeight": 144,
+        "ratio": "1.00:1",
+        "renderedWidth": "36px",
+        "role": "thumbnail"
+      }
+    ],
+    "spacingSamples": [
+      {
+        "tag": "h1",
+        "margin": "0px 0px 0px -2px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "h2",
+        "margin": "0px 0px 0px -2px",
+        "padding": "0px 32px",
+        "gap": "normal"
+      },
+      {
+        "tag": "h3",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "p",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "ul",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "8px"
+      },
+      {
+        "tag": "button",
+        "margin": "0px",
+        "padding": "0px 12px",
+        "gap": "normal"
+      },
+      {
+        "tag": "nav",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "footer",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      }
+    ],
+    "sectionGaps": [
+      {
+        "between": "section[1]→section[2]",
+        "gap": 10
+      },
+      {
+        "between": "section[2]→section[3]",
+        "gap": 10
+      },
+      {
+        "between": "section[3]→section[4]",
+        "gap": 10
+      },
+      {
+        "between": "section[4]→section[5]",
+        "gap": 10
+      },
+      {
+        "between": "section[6]→section[7]",
+        "gap": 224
+      }
+    ],
+    "grid": {
+      "columns": 2,
+      "gap": "normal",
+      "template": "232px 1072px",
+      "selector": "div.JgFxua_frame"
+    },
+    "focusVisible": true,
+    "reducedMotion": true
+  },
+  {
+    "url": "https://linear.app/homepage",
+    "title": "Linear – The system for product development",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "colors": {
+      "pageBackground": "rgb(8, 9, 10)",
+      "backgroundColors": [
+        "rgba(255, 255, 255, 0.05)",
+        "rgba(255, 255, 255, 0.02)",
+        "rgba(0, 255, 5, 0.1)",
+        "rgba(255, 255, 255, 0.08)",
+        "rgb(8, 9, 10)",
+        "rgba(255, 255, 255, 0.03)",
+        "rgb(0, 0, 0)",
+        "rgb(15, 16, 17)"
+      ],
+      "textColors": [
+        "rgb(98, 102, 109)",
+        "rgb(138, 143, 152)",
+        "rgb(208, 214, 224)",
+        "rgb(226, 228, 231)",
+        "rgb(247, 156, 224)",
+        "rgb(247, 248, 248)"
+      ],
+      "accentCandidates": [
+        "rgb(98, 102, 109)",
+        "rgb(138, 143, 152)",
+        "rgb(255, 255, 255)",
+        "rgb(247, 248, 248)",
+        "rgba(255, 255, 255, 0.05)",
+        "rgb(208, 214, 224)"
+      ]
+    },
+    "typography": {
+      "uniqueFamilies": [
+        "Inter Variable",
+        "Berkeley Mono"
+      ],
+      "headings": {
+        "h1": {
+          "size": "64px",
+          "weight": "510",
+          "lineHeight": "64px",
+          "letterSpacing": "-1.408px",
+          "family": "Inter Variable"
+        },
+        "h3": {
+          "size": "20px",
+          "weight": "590",
+          "lineHeight": "26.6px",
+          "letterSpacing": "-0.24px",
+          "family": "Inter Variable"
+        },
+        "h4": {
+          "size": "16px",
+          "weight": "590",
+          "lineHeight": "24px",
+          "letterSpacing": "normal",
+          "family": "Inter Variable"
+        },
+        "h2": {
+          "size": "48px",
+          "weight": "510",
+          "lineHeight": "48px",
+          "letterSpacing": "-1.056px",
+          "family": "Inter Variable"
+        }
+      },
+      "body": {
+        "size": "15px",
+        "weight": "400",
+        "lineHeight": "24px",
+        "family": "Inter Variable",
+        "maxWidth": "none"
+      }
+    },
+    "layout": {
+      "bodyPadding": "0px",
+      "containerMaxWidth": "none",
+      "containerPadding": "72px 0px 0px",
+      "containerWidth": "1440px"
+    },
+    "effects": {
+      "radii": [
+        "2px",
+        "6px",
+        "50%",
+        "4px",
+        "9999px",
+        "12px",
+        "8px",
+        "12px 12px 0px 0px"
+      ],
+      "shadows": [
+        "rgba(0, 0, 0, 0.03) 0px 1.2px 0px 0px",
+        "rgba(0, 0, 0, 0.4) 0px 2px 4px 0px",
+        "rgba(0, 0, 0, 0.2) 0px 0px 12px 0px inset",
+        "rgb(35, 37, 42) 0px 0px 0px 1px inset",
+        "rgba(0, 0, 0, 0.2) 0px 0px 0px 1px",
+        "rgba(0, 0, 0, 0) 0px 8px 2px 0px, rgba(0, 0, 0, 0.01) 0px 5px 2px 0px, rgba(0, 0, 0, 0.04) 0px 3px 2px 0px, rgba(0, 0, 0, 0.07) 0px 1px 1px 0px, rgba(0, 0, 0, 0.08) 0px 0px 1px 0px"
+      ],
+      "transitions": [
+        "all",
+        "border-color 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "color 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "border 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "filter 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "background 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94)"
+      ]
+    },
+    "cards": [
+      {
+        "selector": "div.w9ZFkq_note",
+        "width": "646px",
+        "height": "146px",
+        "ratio": "4.44:1",
+        "radius": "6px",
+        "shadow": "rgba(0, 0, 0, 0.2) 0px 0px 0px 1px"
+      },
+      {
+        "selector": "div.w9ZFkq_chatBox",
+        "width": "400px",
+        "height": "488px",
+        "ratio": "0.82:1",
+        "radius": "8px",
+        "shadow": null
+      }
+    ],
+    "images": [
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/c7b144b7-4ef0-4991-9bcb-617c6a37d200/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 1062,
+        "naturalHeight": 493,
+        "ratio": "2.15:1",
+        "renderedWidth": "1416px",
+        "role": "hero"
+      },
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/c7fa8f5f-d439-4329-6a65-de549b51e300/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 6304,
+        "naturalHeight": 3520,
+        "ratio": "1.79:1",
+        "renderedWidth": "1440px",
+        "role": "hero"
+      },
+      {
+        "src": "https://webassets.linear.app/images/ornj730p/production/f79251b06e9edeeacbf2875384defe629e000b3c-352x352.png?w=72&q=95&auto=format&dpr=2",
+        "naturalWidth": 144,
+        "naturalHeight": 144,
+        "ratio": "1.00:1",
+        "renderedWidth": "14px",
+        "role": "thumbnail"
+      },
+      {
+        "src": "https://webassets.linear.app/images/ornj730p/production/f79251b06e9edeeacbf2875384defe629e000b3c-352x352.png?w=72&q=95&auto=format&dpr=2",
+        "naturalWidth": 144,
+        "naturalHeight": 144,
+        "ratio": "1.00:1",
+        "renderedWidth": "14px",
+        "role": "thumbnail"
+      },
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/c8aeedda-7726-4a4f-226a-f573f85d8d00/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 512,
+        "naturalHeight": 512,
+        "ratio": "1.00:1",
+        "renderedWidth": "36px",
+        "role": "thumbnail"
+      },
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/580cd9c0-2770-4fe4-1ad2-95c76fc6f000/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 192,
+        "naturalHeight": 192,
+        "ratio": "1.00:1",
+        "renderedWidth": "36px",
+        "role": "thumbnail"
+      },
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/c8aeedda-7726-4a4f-226a-f573f85d8d00/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 512,
+        "naturalHeight": 512,
+        "ratio": "1.00:1",
+        "renderedWidth": "36px",
+        "role": "thumbnail"
+      },
+      {
+        "src": "https://linear.app/cdn-cgi/imagedelivery/fO02fVwohEs9s9UHFwon6A/22210a73-581d-42db-d42a-bf2907860300/f=auto,dpr=2,fit=scale-down,metadata=none",
+        "naturalWidth": 144,
+        "naturalHeight": 144,
+        "ratio": "1.00:1",
+        "renderedWidth": "36px",
+        "role": "thumbnail"
+      }
+    ],
+    "spacingSamples": [
+      {
+        "tag": "h1",
+        "margin": "0px 0px 0px -2px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "h2",
+        "margin": "0px 0px 0px -2px",
+        "padding": "0px 32px",
+        "gap": "normal"
+      },
+      {
+        "tag": "h3",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "p",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "ul",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "8px"
+      },
+      {
+        "tag": "button",
+        "margin": "0px",
+        "padding": "0px 12px",
+        "gap": "normal"
+      },
+      {
+        "tag": "nav",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "footer",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      }
+    ],
+    "sectionGaps": [
+      {
+        "between": "section[1]→section[2]",
+        "gap": 10
+      },
+      {
+        "between": "section[2]→section[3]",
+        "gap": 10
+      },
+      {
+        "between": "section[3]→section[4]",
+        "gap": 10
+      },
+      {
+        "between": "section[4]→section[5]",
+        "gap": 10
+      },
+      {
+        "between": "section[6]→section[7]",
+        "gap": 224
+      }
+    ],
+    "grid": {
+      "columns": 2,
+      "gap": "normal",
+      "template": "232px 1072px",
+      "selector": "div.JgFxua_frame"
+    },
+    "focusVisible": true,
+    "reducedMotion": true
+  },
+  {
+    "url": "https://linear.app/customers",
+    "title": "Linear Customers",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "colors": {
+      "pageBackground": "rgb(8, 9, 10)",
+      "backgroundColors": [
+        "rgb(255, 255, 255)",
+        "rgb(24, 25, 26)",
+        "rgb(8, 9, 10)",
+        "rgb(229, 229, 230)",
+        "rgb(0, 0, 0)",
+        "rgb(35, 37, 42)",
+        "rgb(71, 71, 71)",
+        "rgb(0, 78, 255)"
+      ],
+      "textColors": [
+        "rgb(138, 143, 152)",
+        "rgb(98, 102, 109)",
+        "rgb(208, 214, 224)",
+        "rgb(247, 248, 248)",
+        "rgb(8, 9, 10)"
+      ],
+      "accentCandidates": [
+        "rgb(247, 248, 248)",
+        "rgb(138, 143, 152)",
+        "rgb(98, 102, 109)",
+        "rgb(229, 229, 230)",
+        "rgb(8, 9, 10)",
+        "rgba(255, 255, 255, 0.05)"
+      ]
+    },
+    "typography": {
+      "uniqueFamilies": [
+        "Inter Variable"
+      ],
+      "headings": {
+        "h1": {
+          "size": "48px",
+          "weight": "510",
+          "lineHeight": "48px",
+          "letterSpacing": "-1.056px",
+          "family": "Inter Variable"
+        },
+        "h2": {
+          "size": "72px",
+          "weight": "510",
+          "lineHeight": "72px",
+          "letterSpacing": "-1.584px",
+          "family": "Inter Variable"
+        },
+        "h3": {
+          "size": "13px",
+          "weight": "510",
+          "lineHeight": "19.5px",
+          "letterSpacing": "-0.13px",
+          "family": "Inter Variable"
+        }
+      },
+      "body": {
+        "size": "20px",
+        "weight": "510",
+        "lineHeight": "26.6px",
+        "family": "Inter Variable",
+        "maxWidth": "none"
+      }
+    },
+    "layout": {
+      "bodyPadding": "0px",
+      "containerMaxWidth": "none",
+      "containerPadding": "72px 0px 0px",
+      "containerWidth": "1440px"
+    },
+    "effects": {
+      "radii": [
+        "9999px",
+        "4px",
+        "6px"
+      ],
+      "shadows": [
+        "rgba(0, 0, 0, 0) 0px 8px 2px 0px, rgba(0, 0, 0, 0.01) 0px 5px 2px 0px, rgba(0, 0, 0, 0.04) 0px 3px 2px 0px, rgba(0, 0, 0, 0.07) 0px 1px 1px 0px, rgba(0, 0, 0, 0.08) 0px 0px 1px 0px",
+        "rgba(255, 255, 255, 0.03) 0px 0px 0px 1px inset, rgba(255, 255, 255, 0.04) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.6) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 4px 0px"
+      ],
+      "transitions": [
+        "all",
+        "border-color 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "color 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94), background 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "border 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), color 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.16s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+        "color 0.1s",
+        "filter 0.2s cubic-bezier(0.215, 0.61, 0.355, 1)"
+      ]
+    },
+    "cards": [],
+    "images": [
+      {
+        "src": "https://webassets.linear.app/images/ornj730p/production/3f9effea32e10a50fb67b55698546554e669f9ef-768x432.png?q=95&auto=format&dpr=2",
+        "naturalWidth": 768,
+        "naturalHeight": 432,
+        "ratio": "1.78:1",
+        "renderedWidth": "386px",
+        "role": "feature"
+      },
+      {
+        "src": "https://webassets.linear.app/images/ornj730p/production/aa2c4253660160fcfa558cbbf586067eea8ed2d9-1536x864.png?q=95&auto=format&dpr=2",
+        "naturalWidth": 1536,
+        "naturalHeight": 864,
+        "ratio": "1.78:1",
+        "renderedWidth": "386px",
+        "role": "feature"
+      }
+    ],
+    "spacingSamples": [
+      {
+        "tag": "h1",
+        "margin": "0px 0px 0px -2px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "h2",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "h3",
+        "margin": "0px 0px 24px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "p",
+        "margin": "0px 0px 0px -1px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "ul",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "8px"
+      },
+      {
+        "tag": "button",
+        "margin": "0px",
+        "padding": "0px 12px",
+        "gap": "normal"
+      },
+      {
+        "tag": "nav",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      },
+      {
+        "tag": "footer",
+        "margin": "0px",
+        "padding": "0px",
+        "gap": "normal"
+      }
+    ],
+    "sectionGaps": [],
+    "grid": {
+      "columns": 5,
+      "gap": "64px 0px",
+      "template": "384px 64px 384px 64px 384px",
+      "selector": "div.f8wWCG_root"
+    },
+    "focusVisible": true,
+    "reducedMotion": true
+  }
+]

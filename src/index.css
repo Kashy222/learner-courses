@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-anthropic-bg: #FDFCFB;
+  --color-anthropic-sidebar: #F2EEE8;
+  --color-anthropic-peachLight: #E8E4DD;
+  --color-anthropic-card: #FFFFFF;
+  --color-anthropic-text: #1F1E1B;
+  --color-anthropic-muted: #6B6965;
+  --color-anthropic-border: #E6E4DF;
+  --color-anthropic-accent: #D05A42;
+  --color-anthropic-accentHover: #B94B34;
+  --color-anthropic-peach: #D97757;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+body {
+  background-color: var(--color-anthropic-bg);
+  color: var(--color-anthropic-text);
+  font-family: var(--font-sans);
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-subtle::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-subtle::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-subtle::-webkit-scrollbar-thumb {
+    background: #E6E4DF;
+    border-radius: 10px;
+  }
+  .scrollbar-subtle:hover::-webkit-scrollbar-thumb {
+    background: #D4D2CD;
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    mix-blend-mode: overlay;
+  }
+}
