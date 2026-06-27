@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Cloud, CloudLightning, Loader2, ChevronDown, Key, DownloadCloud, UploadCloud, X } from 'lucide-react';
+import { Cloud, CloudLightning, Loader2, ChevronDown, X } from 'lucide-react';
 import { SYLLABUS_DATA } from './data/syllabus';
 import { DS_SYLLABUS_DATA } from './data/designSystemsSyllabus';
 
@@ -297,7 +297,7 @@ export const LearningPlatform: React.FC = () => {
                     {otpVals.map((val, i) => (
                       <input
                         key={i}
-                        ref={(el) => (inputRefs.current[i] = el)}
+                        ref={(el) => { inputRefs.current[i] = el; }}
                         type="text"
                         maxLength={1}
                         value={val}
