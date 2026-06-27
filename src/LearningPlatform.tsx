@@ -208,28 +208,39 @@ export const LearningPlatform: React.FC = () => {
     <div className="min-h-screen bg-anthropic-bg text-anthropic-text font-sans relative">
       <div className="bg-noise" />
       {/* Top Sticky Navigation Component Row */}
-      <nav className="sticky top-0 z-50 bg-anthropic-bg/80 backdrop-blur-md border-b border-anthropic-border px-4 sm:px-6 py-4 flex flex-wrap sm:flex-nowrap items-center justify-between gap-y-4">
-        {/* Left Container */}
-        <div className="flex flex-col gap-1 w-1/2 sm:w-1/4 order-1">
-          <span className="text-[10px] font-bold tracking-widest text-anthropic-muted uppercase">
-            Course Progress
-          </span>
-          <div className="relative inline-block w-fit">
-            <select 
-              value={currentCourse}
-              onChange={handleCourseChange}
-              className="text-anthropic-text font-bold text-lg tracking-tight bg-transparent border border-anthropic-border rounded-lg pl-3 pr-10 py-1 outline-none cursor-pointer focus:ring-2 focus:ring-anthropic-accent/20 appearance-none hover:bg-anthropic-sidebar transition-colors"
-              style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
-            >
-              <option value="zero-to-motion">Zero-to-Motion</option>
-              <option value="design-systems">Design Systems</option>
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-anthropic-muted pointer-events-none" />
+      <nav className="sticky top-0 z-50 bg-anthropic-bg/80 backdrop-blur-md border-b border-anthropic-border px-4 sm:px-6 py-4 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 sm:gap-0">
+        
+        {/* Mobile Top Row Wrapper: Dropdown + Hamburger */}
+        <div className="flex justify-between items-center w-full sm:w-1/4">
+          <div className="flex flex-col gap-1 w-full">
+            <span className="text-[10px] font-bold tracking-widest text-anthropic-muted uppercase">
+              Course Progress
+            </span>
+            <div className="relative inline-block w-fit">
+              <select 
+                value={currentCourse}
+                onChange={handleCourseChange}
+                className="text-anthropic-text font-bold text-lg tracking-tight bg-transparent border border-anthropic-border rounded-lg pl-3 pr-10 py-1 outline-none cursor-pointer focus:ring-2 focus:ring-anthropic-accent/20 appearance-none hover:bg-anthropic-sidebar transition-colors"
+                style={{ WebkitAppearance: 'none', MozAppearance: 'none' }}
+              >
+                <option value="zero-to-motion">Zero-to-Motion</option>
+                <option value="design-systems">Design Systems</option>
+              </select>
+              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-anthropic-muted pointer-events-none" />
+            </div>
           </div>
+          
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="lg:hidden p-1.5 sm:p-2 text-anthropic-text hover:bg-gray-100 rounded-lg transition-colors border border-transparent hover:border-gray-200 shrink-0"
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
+            <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
         </div>
 
         {/* Center: Compact Progress Tracker */}
-        <div className="flex-1 flex flex-col justify-center items-center w-full sm:w-1/2 px-0 sm:px-8 gap-1.5 order-3 sm:order-2 mt-2 sm:mt-0">
+        <div className="flex-1 flex flex-col justify-center items-center w-full sm:w-1/2 px-0 sm:px-8 gap-1.5">
           <div className="text-[10px] font-bold tracking-widest text-anthropic-muted uppercase text-left w-full max-w-md mx-auto flex items-center gap-2">
             <span>
               Phase {activeData.find(m => m.id === activeModuleId)?.phase.split(':')[0]} • Unit {activeData.find(m => m.id === activeModuleId)?.unit.replace('U', '')}
@@ -249,29 +260,21 @@ export const LearningPlatform: React.FC = () => {
           </div>
         </div>
         
-        {/* Right Container */}
-        <div className="flex items-center justify-end gap-3 w-1/2 sm:w-1/4 order-2 sm:order-3">
-          {/* Mobile Menu Toggle */}
-          <button 
-            className="lg:hidden p-1.5 sm:p-2 text-anthropic-text hover:bg-gray-100 rounded-lg transition-colors border border-transparent hover:border-gray-200"
-            onClick={() => setIsMobileMenuOpen(true)}
-          >
-            <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
-          </button>
-          
-          {/* Desktop Start Learning Button */}
+        {/* Right Container: Actions (Desktop: Side-by-Side, Mobile: Side-by-Side on new row) */}
+        <div className="flex items-center justify-between sm:justify-end gap-3 w-full sm:w-1/4">
+          {/* Start Learning Button */}
           <button 
             onClick={handleResume}
-            className="hidden sm:block bg-anthropic-accent hover:bg-anthropic-accentHover text-white px-5 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm shrink-0"
+            className="flex-1 sm:flex-none bg-anthropic-accent hover:bg-anthropic-accentHover text-white px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium transition-colors shadow-sm shrink-0 text-center"
           >
             {completedCount === 0 ? "Start Learning" : "Resume Learning"}
           </button>
           
           {/* Cloud Sync Popover Wrapper */}
-          <div className="relative flex flex-col items-end gap-1">
+          <div className="relative flex flex-col items-end sm:items-end gap-1 flex-1 sm:flex-none">
             <button
               onClick={() => setIsSyncPopoverOpen(!isSyncPopoverOpen)}
-              className={`w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-white border rounded-lg text-sm font-medium transition-colors shadow-sm ${isSyncPopoverOpen ? 'border-anthropic-text text-anthropic-text' : 'border-anthropic-border hover:bg-gray-50'}`}
+              className={`w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 sm:py-2 bg-white border rounded-lg text-sm font-medium transition-colors shadow-sm ${isSyncPopoverOpen ? 'border-anthropic-text text-anthropic-text' : 'border-anthropic-border hover:bg-gray-50'}`}
             >
               {syncStatus === 'saving' || syncStatus === 'loading' ? (
                  <Loader2 className="w-4 h-4 animate-spin text-anthropic-accent" />
@@ -280,7 +283,7 @@ export const LearningPlatform: React.FC = () => {
               ) : (
                  <Cloud className={`w-4 h-4 ${isSyncPopoverOpen ? 'text-anthropic-text' : 'text-anthropic-muted'}`} />
               )}
-              <span className="hidden xl:inline">{syncStatus === 'success' ? 'Synced' : 'Cloud Sync'}</span>
+              <span className="inline">{syncStatus === 'success' ? 'Synced' : 'Cloud Sync'}</span>
             </button>
 
             {lastSyncedAt && (
@@ -291,7 +294,7 @@ export const LearningPlatform: React.FC = () => {
 
             {/* Popover Dropdown */}
             {isSyncPopoverOpen && (
-              <div className="absolute right-0 top-full mt-3 w-72 bg-anthropic-card rounded-xl shadow-2xl border border-anthropic-border p-4 animate-in fade-in slide-in-from-top-2 z-50">
+              <div className="absolute right-0 top-full mt-4 sm:mt-3 w-[260px] sm:w-72 bg-anthropic-card rounded-xl shadow-2xl border border-anthropic-border p-4 animate-in fade-in slide-in-from-top-2 z-50">
                 {/* CSS Triangle */}
                 <div className="absolute -top-2 right-12 w-4 h-4 bg-anthropic-card border-t border-l border-anthropic-border transform rotate-45"></div>
                 
@@ -313,7 +316,7 @@ export const LearningPlatform: React.FC = () => {
                         value={val}
                         onChange={(e) => handleOtpChange(i, e.target.value)}
                         onKeyDown={(e) => handleOtpKeyDown(i, e)}
-                        className="w-9 h-10 text-center font-mono font-bold text-lg bg-anthropic-bg border border-anthropic-border rounded-md focus:border-anthropic-accent focus:ring-1 focus:ring-anthropic-accent outline-none uppercase transition-all"
+                        className="w-8 h-9 sm:w-9 sm:h-10 text-center font-mono font-bold text-lg bg-anthropic-bg border border-anthropic-border rounded-md focus:border-anthropic-accent focus:ring-1 focus:ring-anthropic-accent outline-none uppercase transition-all"
                       />
                     ))}
                   </div>
@@ -338,16 +341,6 @@ export const LearningPlatform: React.FC = () => {
               </div>
             )}
           </div>
-        </div>
-
-        {/* Mobile Start Learning Button */}
-        <div className="w-full order-4 sm:hidden mt-2">
-          <button 
-            onClick={handleResume}
-            className="w-full bg-anthropic-accent hover:bg-anthropic-accentHover text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors shadow-sm"
-          >
-            {completedCount === 0 ? "Start Learning" : "Resume Learning"}
-          </button>
         </div>
       </nav>
 
