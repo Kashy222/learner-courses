@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Cloud, CloudLightning, Loader2, ChevronDown, X } from 'lucide-react';
+import { Cloud, CloudLightning, Loader2, ChevronDown, X, Menu } from 'lucide-react';
 import { SYLLABUS_DATA } from './data/syllabus';
 import { DS_SYLLABUS_DATA } from './data/designSystemsSyllabus';
 
@@ -15,6 +15,7 @@ export const LearningPlatform: React.FC = () => {
   const [sandboxInputs, setSandboxInputs] = useState<Record<string, string>>({});
   
   const [currentCourse, setCurrentCourse] = useState<'zero-to-motion' | 'design-systems'>('zero-to-motion');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Sync States
   const [isSyncPopoverOpen, setIsSyncPopoverOpen] = useState(false);
@@ -250,6 +251,14 @@ export const LearningPlatform: React.FC = () => {
         
         {/* Right Container */}
         <div className="flex items-center justify-end gap-3 w-1/2 sm:w-1/4 order-2 sm:order-3">
+          {/* Mobile Menu Toggle */}
+          <button 
+            className="lg:hidden p-1.5 sm:p-2 text-anthropic-text hover:bg-gray-100 rounded-lg transition-colors border border-transparent hover:border-gray-200"
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
+            <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+          
           {/* Desktop Start Learning Button */}
           <button 
             onClick={handleResume}
@@ -359,8 +368,8 @@ export const LearningPlatform: React.FC = () => {
             />
           </div>
 
-          {/* Right Column (Fixed Layout Area) */}
-          <div className="block mt-6 lg:mt-0">
+          {/* Right Column (Fixed Layout Area - Desktop) */}
+          <div className="hidden lg:block">
             <Sidebar 
               activeId={activeModuleId}
               completedModules={completedModules}
@@ -371,6 +380,32 @@ export const LearningPlatform: React.FC = () => {
           
         </div>
       </main>
+
+      {/* Mobile Sidebar Overlay (Unicorn UX) */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-[100] lg:hidden flex justify-end bg-black/40 backdrop-blur-sm animate-in fade-in" onClick={() => setIsMobileMenuOpen(false)}>
+          <div 
+            className="w-[85%] max-w-[320px] h-full bg-anthropic-bg shadow-2xl p-6 overflow-y-auto animate-in slide-in-from-right"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <span className="font-bold text-xl tracking-tight text-anthropic-text">Syllabus</span>
+              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors text-anthropic-muted hover:text-anthropic-text">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <Sidebar 
+              activeId={activeModuleId}
+              completedModules={completedModules}
+              onSelectModule={(id) => {
+                handleSelectModule(id);
+                setIsMobileMenuOpen(false);
+              }}
+              syllabusData={activeData}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
