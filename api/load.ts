@@ -1,4 +1,6 @@
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
+
+const redis = Redis.fromEnv();
 
 export default async function handler(req: any, res: any) {
   if (req.method === 'GET') {
@@ -8,7 +10,7 @@ export default async function handler(req: any, res: any) {
         return res.status(400).json({ error: 'Missing syncKey' });
       }
       
-      const dataStr = await kv.get(syncKey);
+      const dataStr = await redis.get(syncKey);
       
       if (!dataStr) {
         return res.status(404).json({ error: 'SyncKey not found' });

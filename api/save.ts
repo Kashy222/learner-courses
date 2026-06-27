@@ -1,4 +1,6 @@
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
+
+const redis = Redis.fromEnv();
 
 export default async function handler(req: any, res: any) {
   if (req.method === 'POST') {
@@ -9,7 +11,7 @@ export default async function handler(req: any, res: any) {
       }
       
       // Store the data string in KV under the syncKey
-      await kv.set(syncKey, JSON.stringify(data));
+      await redis.set(syncKey, JSON.stringify(data));
       
       return res.status(200).json({ success: true });
     } catch (error) {
